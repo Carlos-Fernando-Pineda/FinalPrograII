@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+        <title>Lista de Usuarios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>LISTAR USUARIOS</h1>
+        <a th:href="@{/}">Regresar</a>
+        <div>TODO write content</div>
+        <div th:if="${usuarios != null and !usuarios.empty">
+            <table border="1">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Departamento</th>
+                    <th>Profesion</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Fecha nacimiento</th>
+                    <th>Longitud</th>
+                    <th>Latitud</th>
+                    <th>Fecha registro</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+                <tr th:each="tb_usuarios : ${usuarios}">
+                    <td th:text="${tb_usuarios.NOMBRE}"></td>
+                    <td th:text="${tb_usuarios.APELLIDO}"></td>
+                    <td th:text="${departamentos.get(tb_usuarios.ID_DEPTO)}"></td>
+                    <td th:text="${profesiones.get(tb_usuarios.ID_PROFESION)}"></td>
+                    <td th:text="${tb_usuarios.CORREO_ELECTRONICO}"></td>
+                    <td th:text="${tb_usuarios.TELEFONO}"></td>
+                    <td th:text="${tb_usuarios.FECHA_NACIMIENTO}"></td>
+                    <td th:text="${tb_usuarios.LONGITUD}"></td>
+                    <td th:text="${tb_usuarios.LATITUD}"></td>
+                    <td th:text="${tb_usuarios.FECHA_REGISTRO}"></td>
+                    <td><a th:text="@{/editarUser/} + ${tb_usuarios.ID_USUARIO}" th:text="Editar"/></td>
+                    <td><a th:text="@{/eliminarUser/} + ${tb_usuarios.ID_USUARIO}" th:text="Eliminar"/></td>
+                </tr>
+            </table>
+            <div th:if="${usuarios == null or usuarios.empty}">
+                No hay cuates
+            </div>
+        </div>
+    </body>
+</html>
